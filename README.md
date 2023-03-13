@@ -20,4 +20,4 @@
 
 > 강의를 들으면서 공부한 내용 정리해두기
 
-[🐱 Section1. 리액트가 왜 좋은가요?]()
+[🐱 Section1. 리액트가 왜 좋은가요?](https://github.com/mireyhgnay/cat-jjal-maker/blob/main/study-note/Section1.%20%EB%A6%AC%EC%95%A1%ED%8A%B8%EA%B0%80%20%EC%99%9C%20%EC%A2%8B%EC%9D%80%EA%B0%80%EC%9A%94%3F.md)

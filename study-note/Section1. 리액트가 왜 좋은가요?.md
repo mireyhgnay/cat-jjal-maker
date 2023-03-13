@@ -92,6 +92,9 @@ ReactDOM.render(catItem, APP);
 <br>
 
 index.html 에서 확인해보면 `head` 태그 안에 script 하나가 생성되어있을 것이다.
+
+<br>
+
 <img width="440" alt="script" src="https://user-images.githubusercontent.com/111990266/224700210-43c15a9e-17a7-4fd2-a1d2-eccc89c18bde.png">
 
 - 바벨로 변환된 자바스크립트 코드가 있다.
