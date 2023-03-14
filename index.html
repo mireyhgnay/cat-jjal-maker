@@ -22,9 +22,6 @@
       flex-wrap: wrap;
       gap: 15px;
     }
-    .favorites img {
-      width: 150px;
-    }
   </style>
   <body>
     <div id="app"></div>
@@ -40,46 +37,82 @@
     ></script>
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
     <script type="text/babel">
-      const title = <h1>1번째 고양이 가라사대</h1>;
+      const Title = (props) => {
+        // console.log(props);
+        // 해당 타이틀의 내용은 children 이라는 애로 넘어온다~ 라고 생각하면 된다
+        return <h1>{props.children}</h1>;
+      };
 
-      const mainCard = (
-        <div class="main-card">
-          <img src="./images/cat.png" alt="고양이" width="400" />
-          <button>🤍</button>
-        </div>
-      );
+      const MainCard = ({ img }) => {
+        // 버튼을 클릭했을 때, 콘솔에 하트 눌렀음 을 출력한다
+        function handleHeartClick() {
+          console.log("하트 눌렀음");
+        }
 
-      const form = (
-        <form>
-          <input
-            type="text"
-            name="name"
-            placeholder="영어 대사를 입력해주세요"
-          />
-          <button type="submit">생성</button>
-        </form>
-      );
+        // 버튼을 마우스 오버 했을 때, 콘솔에 하트 스쳐 지나감 을 출력한다
+        function handleHeartMouseOver() {
+          console.log("하트 스쳐 지나감");
+        }
 
-      const catItem = (
-        <li>
-          <img src="./images/cat.png" />
-        </li>
-      );
+        return (
+          <div className="main-card">
+            <img src={img} alt="고양이" width="400" />
+            <button
+              onClick={handleHeartClick}
+              onMouseOver={handleHeartMouseOver}
+            >
+              🤍
+            </button>
+          </div>
+        );
+      };
 
-      const favorites = (
-        <ul class="favorites">
-          {catItem}
-          {catItem}
-          {catItem}
-        </ul>
-      );
+      const Form = () => {
+        // 상태 변경하기
+        const counterState = React.useState(1); // 초기값 1 설정
+
+        // 생성 버튼(form태그) 클릭 시, 전송하도록 하는 함수
+        function handleFormSubmit(event) {
+          console.log("폼 전송됨");
+          event.preventDefault();
+        }
+
+        return (
+          <form onSubmit={handleFormSubmit}>
+            <input
+              type="text"
+              name="name"
+              placeholder="영어 대사를 입력해주세요"
+            />
+            <button type="submit">생성</button>
+          </form>
+        );
+      };
+
+      function CatItem(props) {
+        // console.log(props);
+        return (
+          <li>
+            <img src={props.img} style={{ width: "150px" }} />
+          </li>
+        );
+      }
+
+      function Favorites() {
+        return (
+          <ul className="favorites">
+            <CatItem img="./images/cat.png" />
+            <CatItem img="./images/cat2.jpeg" />
+          </ul>
+        );
+      }
 
       const app = (
         <div>
-          {title}
-          {mainCard}
-          {form}
-          {favorites}
+          <Title>1번째 고양이 가라사대</Title>
+          <Form />
+          <MainCard img="./images/cat.png" />
+          <Favorites />
         </div>
       );
 
