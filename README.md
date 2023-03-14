@@ -21,6 +21,6 @@
 > 강의를 들으면서 공부한 내용 정리해두기
 
 [🐱 Section1. 리액트가 왜 좋은가요?](https://github.com/mireyhgnay/cat-jjal-maker/blob/main/study-note/Section1.%20%EB%A6%AC%EC%95%A1%ED%8A%B8%EA%B0%80%20%EC%99%9C%20%EC%A2%8B%EC%9D%80%EA%B0%80%EC%9A%94%3F.md)  
-[🐱 Section2. 리액트 앱 바닥부터 만들기 - 컴포넌트 만들기]()  
-[🐱 Section2. 리액트 앱 바닥부터 만들기 - 스타일링]()  
-[🐱 Section2. 리액트 앱 바닥부터 만들기 - 이벤트 다루기]()
+[🐱 Section2-1. 리액트 앱 바닥부터 만들기 - 컴포넌트 만들기]()  
+[🐱 Section2-2. 리액트 앱 바닥부터 만들기 - 스타일링]()  
+[🐱 Section2-3. 리액트 앱 바닥부터 만들기 - 이벤트 다루기]()
