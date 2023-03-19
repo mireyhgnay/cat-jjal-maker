@@ -2,6 +2,19 @@
 
 <br>
 
+### 목차
+
+[1. useState 상태로 만들기](#1.-useState-상태로-만들기)  
+[2. useState ‘생성’ 버튼 클릭할 때마다 ‘1’ 숫자값 증가시기 React.useState()](#2.-useState-‘생성’-버튼-클릭할-때마다-‘1’-숫자값-증가시키기)  
+[3. 상태 끌어 올리기(lifting state up)](#3-상태-끌어-올리기lifting-state-up)  
+[4. 리스트 만들기](#4-리스트-만들기)  
+[5. 상태, prop, 이벤트, 리스트 기능 사용해보기](#5-상태-prop-이벤트-리스트-기능-사용해보기)  
+[6. form에서 소문자를 입력해도 대문자로 출력되도록 해보기](#6-form에서-소문자를-입력해도-대문자로-출력되도록-해보기)  
+[7. Form 검증 : 사용자들이 폼을 사용할 때 만날 수 있는 에러 잡기](#7-form-검증--사용자들이-폼을-사용할-때-만날-수-있는-에러-잡기)  
+[8. 로컬스토리지 (Local Storage) :: 브라우저 기본 API](#8-로컬스토리지-local-storage--브라우저-기본-api)
+
+<br>
+
 ## 1. useState 상태로 만들기
 
 값을 맘대로 변경하고 싶을 때 상태라는 것을 사용합니다.
@@ -10,7 +23,9 @@
 
 <br>
 
-## 2. useState ‘생성’ 버튼 클릭할 때마다 ‘1’ 숫자값 증가시기 `React.useState()`
+## 2. useState ‘생성’ 버튼 클릭할 때마다 ‘1’ 숫자값 증가시키기
+
+### `React.useState()`
 
 counterState 는 아래 counter, setCounter 두개로 나뉠 수 있다.
 
@@ -281,4 +296,4 @@ array, true, false 등 모든 데이터 유형이 로컬스토리지에서는 st
 
 위 코드를 스크립트 코드 최상단에 추가해주고, localStorage 키워드로 쓴 것들을 jsonLocalStorage 로 변경해준다.
 
-그리고나ㅓㅅ Number 를 제거해줘도 Number 형식으로 잘 저장됩니다.
+그리고나서 Number 를 제거해줘도 Number 형식으로 잘 저장됩니다.
