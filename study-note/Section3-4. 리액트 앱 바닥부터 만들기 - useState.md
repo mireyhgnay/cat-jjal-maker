@@ -84,4 +84,40 @@ props를 어디까지 내려보내느냐?
 
 <br>
 
-##
+## 리스트 만들기
+
+고양이 리스트를 하나하나 추가하지 않도록 리스트를 생성해준다.
+
+- 고양이 이미지를 배열로 생성해서 map을 사용해서 리스트 생성해주기
+- map() : 배열 인자들을 하나하나 순회하면서 함수를 수행해서 새로운 배열로 만들어준다
+
+<br>
+
+**EX)**
+
+```jsx
+["고양이1", "고양이2", "고양이3"].map((cat) => cat + "귀여워");
+// ["고양이1귀여워", "고양이2귀여워", "고양이3귀여워"]
+```
+
+<br>
+
+```jsx
+function Favorites() {
+  const CAT1 = "./images/cat.png";
+  const CAT2 = "./images/cat2.jpeg";
+
+  const cats = [CAT1, CAT2, CAT1, CAT2];
+
+  return (
+    <ul className="favorites">
+      {cats.map((cat) => (
+        <CatItem img={cat} key={cat} />
+      ))}
+    </ul>
+  );
+}
+```
+
+- 고유 key값이 없다는 콘솔에 에러가 떠서 key값을 추가해주면 된다.
+- 리스트는 많이 사용되고, 그럴 때마다 map도 많이 사용되므로 잘 알고있어야 한다!
