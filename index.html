@@ -69,12 +69,14 @@
 
       const Form = () => {
         // 상태 변경하기
-        const counterState = React.useState(1); // 초기값 1 설정
+        const [counter, setCounter] = React.useState(1); // 초기값 1 설정
+
+        console.log("카운터", counter);
 
         // 생성 버튼(form태그) 클릭 시, 전송하도록 하는 함수
         function handleFormSubmit(event) {
-          console.log("폼 전송됨");
           event.preventDefault();
+          setCounter(counter + 1);
         }
 
         return (
