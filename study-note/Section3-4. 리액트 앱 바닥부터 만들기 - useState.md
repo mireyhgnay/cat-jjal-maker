@@ -172,3 +172,53 @@ const Form = ({ handleFormSubmit }) => {
    - `input` 내장 이벤트 `onChange` : input 의 값이 체인지 될때마다 수행해준다
    - `String.prototype.toUpperCase()` : 문자열을 대문자로 변환해 반환합니다
 3. input 의 value 를 상태의 value 로 설정해준다
+
+<br>
+
+## 7. Form 검증 : 사용자들이 폼을 사용할 때 만날 수 있는 에러 잡기
+
+- 한글은 입력할 수 없습니다. (정규표현식 사용)
+  ```jsx
+  const includesHangul = (text) => /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/i.test(text);
+  ```
+
+<br>
+
+- 에러메세지 상태 생성하기
+
+  ```jsx
+  // error message state
+  const [errorMessage, setErrorMessage] = React.useState("");
+
+  function handleInputChange(e) {
+    const userValue = e.target.value;
+
+    if (includesHangul(userValue)) {
+      setErrorMessage("한글은 입력할 수 없습니다.");
+    } else {
+      setErrorMessage(""); // 에러메세지 초기화
+    }
+  }
+  ```
+
+  - input value 값을 한글인지 정규식으로 파악해서 한글을 입력할 경우, `setErrorMessage` 메세지가 뜨도록 한다.
+  - 에러메세지가 나타난 후, 다시 한글을 지우고 영어만 잘 입력했는데도 에러메세지가 사라지지 않는 에러가 있어 `setErrorMessage("");` 로 값을 다시 초기화 시켜준다.
+  - 에러 메세지는 버튼 하단에 p 태그를 추가해서 출력되도록 한다
+    `<p *style*={{ color: "red" }}>{errorMessage}</p>`
+
+<br>
+
+- 빈값
+
+  ```jsx
+  function handleFormSubmit(e) {
+    e.preventDefault();
+    setErrorMessage("");
+
+    if (value === "") {
+      setErrorMessage("빈 값으로 만들 수 없습니다.");
+    }
+  }
+  ```
+
+  - 초기화 시킬 때 else문으로 넣지 않고, 최상위에 먼저 초기화를 시켜주고 if문을 실행해도 초기화가 잘 된다.
