@@ -84,7 +84,7 @@ props를 어디까지 내려보내느냐?
 
 <br>
 
-## 리스트 만들기
+## 4. 리스트 만들기
 
 고양이 리스트를 하나하나 추가하지 않도록 리스트를 생성해준다.
 
@@ -124,7 +124,7 @@ function Favorites() {
 
 <br>
 
-## 상태, prop, 이벤트, 리스트 기능 사용해보기
+## 5. 상태, prop, 이벤트, 리스트 기능 사용해보기
 
 ```jsx
 const [favorites, setFavorites] = React.useState([CAT1, CAT2]);
@@ -144,3 +144,31 @@ function handleHeartClick() {
    - handleHeartClick 이벤트를 공유하기 위해서 함수를 위로 끌어올려줬다
 
 4. setFavorites를 사용해서 하트 버튼을 클릭시(handleHeartClick 이벤트 실행시) favorites 배열을 펼쳐서 쓰고, CAT3를 추가하도록 한다.
+
+<br>
+
+## 6. form에서 소문자를 입력해도 대문자로 출력되도록 해보기
+
+추가된 코드만 작성함
+
+```jsx
+const Form = ({ handleFormSubmit }) => {
+  const [value, setValue] = React.useState("");
+
+  function handleInputChange(e) {
+    setValue(e.target.value.toUpperCase());
+  }
+
+  return (
+    <form onSubmit={handleFormSubmit}>
+      <input value={value} onChange={handleInputChange} />
+    </form>
+  );
+};
+```
+
+1. value state 를 추가해준다. value, setValue 초기값은 “”
+2. `handleInputChange` 이벤트 추가해서 form 의 입력값의 상태를 대문자로 바꿔준다
+   - `input` 내장 이벤트 `onChange` : input 의 값이 체인지 될때마다 수행해준다
+   - `String.prototype.toUpperCase()` : 문자열을 대문자로 변환해 반환합니다
+3. input 의 value 를 상태의 value 로 설정해준다
