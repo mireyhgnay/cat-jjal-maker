@@ -67,18 +67,7 @@
         );
       };
 
-      const Form = () => {
-        // 상태 변경하기
-        const [counter, setCounter] = React.useState(1); // 초기값 1 설정
-
-        console.log("카운터", counter);
-
-        // 생성 버튼(form태그) 클릭 시, 전송하도록 하는 함수
-        function handleFormSubmit(event) {
-          event.preventDefault();
-          setCounter(counter + 1);
-        }
-
+      const Form = ({ handleFormSubmit }) => {
         return (
           <form onSubmit={handleFormSubmit}>
             <input
@@ -109,18 +98,31 @@
         );
       }
 
-      const app = (
-        <div>
-          <Title>1번째 고양이 가라사대</Title>
-          <Form />
-          <MainCard img="./images/cat.png" />
-          <Favorites />
-        </div>
-      );
+      const App = () => {
+        // 상태 변경하기
+        const [counter, setCounter] = React.useState(1); // 초기값 1 설정
+
+        console.log("카운터", counter);
+
+        // 생성 버튼(form태그) 클릭 시, 전송하도록 하는 함수
+        function handleFormSubmit(event) {
+          event.preventDefault();
+          setCounter(counter + 1);
+        }
+
+        return (
+          <div>
+            <Title>{counter}번째 고양이 가라사대</Title>
+            <Form handleFormSubmit={handleFormSubmit} />
+            <MainCard img="./images/cat.png" />
+            <Favorites />
+          </div>
+        );
+      };
 
       const domRender = document.querySelector("#app");
       // app 을 React 를 사용해서 domRender에 그려라
-      ReactDOM.render(app, domRender);
+      ReactDOM.render(<App />, domRender);
     </script>
   </body>
 </html>
