@@ -37,6 +37,15 @@
     ></script>
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
     <script type="text/babel">
+      const jsonLocalStorage = {
+        setItem: (key, value) => {
+          localStorage.setItem(key, JSON.stringify(value));
+        },
+        getItem: (key) => {
+          return JSON.parse(localStorage.getItem(key));
+        },
+      };
+
       const Title = (props) => {
         // 해당 타이틀의 내용은 children 이라는 애로 넘어온다~ 라고 생각하면 된다
         return <h1>{props.children}</h1>;
@@ -120,24 +129,29 @@
         // 상태 변경하기
         // 생성버튼 클릭시, title 숫자 상태 변경하기
         const [counter, setCounter] = React.useState(
-          Number(localStorage.getItem("counter")) // 초기값을 저장된 counter 값으로 지정
+          jsonLocalStorage.getItem("counter") // 초기값을 저장된 counter 값으로 지정
         );
         // 생성버튼 클릭시, MainCard 고양이 이미지 변경하기
         const [mainCat, setMainCat] = React.useState(CAT1);
         // MainCard 하트 버튼 클릭시,
-        const [favorites, setFavorites] = React.useState([CAT1, CAT2]);
+        const [favorites, setFavorites] = React.useState(
+          // 초기에는 저장된 favorites가 없기 때문에 빈 배열을 써라~
+          jsonLocalStorage.getItem("favorites") || []
+        );
 
         // 생성 버튼(form태그) 클릭 시, 전송하도록 하는 함수
         function updateMainCat() {
           setMainCat(CAT2);
           const nextCounter = counter + 1;
           setCounter(nextCounter);
-          localStorage.setItem("counter", nextCounter);
+          jsonLocalStorage.setItem("counter", nextCounter);
         }
 
         // 버튼을 클릭했을 때, 콘솔에 하트 눌렀음 을 출력한다
         function handleHeartClick() {
-          setFavorites([...favorites, CAT3]);
+          const nextFavorites = [...favorites, mainCat];
+          setFavorites(nextFavorites);
+          jsonLocalStorage.setItem("favorites", nextFavorites);
         }
 
         return (

@@ -257,3 +257,28 @@ const [counter, setCounter] = React.useState(
 
 - 카운터 상태를 `localStorage.getItem` 으로 couter 값을 가져온다
 - 문자열로 합해져서 출력되므로 counter(3) + 1 되면 31 로 입력되므로 `Number()`을 사용해서 숫자로 변환해준다
+
+<br>
+
+**util.js**
+
+```jsx
+const jsonLocalStorage = {
+  setItem: (key, value) => {
+    localStorage.setItem(key, JSON.stringify(value));
+  },
+  getItem: (key) => {
+    return JSON.parse(localStorage.getItem(key));
+  },
+};
+```
+
+로컬스토리지에는 string 값으로 저장이되니까 Number 로 감싸주어야했던 것처럼
+
+array, true, false 등 모든 데이터 유형이 로컬스토리지에서는 string 으로 저장이 된다.
+
+그 문제를 해결해주기 위한 코드이다.
+
+위 코드를 스크립트 코드 최상단에 추가해주고, localStorage 키워드로 쓴 것들을 jsonLocalStorage 로 변경해준다.
+
+그리고나ㅓㅅ Number 를 제거해줘도 Number 형식으로 잘 저장됩니다.
