@@ -38,21 +38,20 @@
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
     <script type="text/babel">
       const Title = (props) => {
-        // console.log(props);
         // 해당 타이틀의 내용은 children 이라는 애로 넘어온다~ 라고 생각하면 된다
         return <h1>{props.children}</h1>;
       };
 
-      const MainCard = ({ img, handleHeartClick }) => {
+      const MainCard = ({ img, onHeartClick }) => {
         return (
           <div className="main-card">
             <img src={img} alt="고양이" width="400" />
-            <button onClick={handleHeartClick}>🤍</button>
+            <button onClick={onHeartClick}>🤍</button>
           </div>
         );
       };
 
-      const Form = () => {
+      const Form = ({ updateMainCat }) => {
         const includesHangul = (text) => /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/i.test(text); // 한글만 입력할 수 있도록 검사해주는 정규식
         const [value, setValue] = React.useState("");
         // error message state
@@ -60,11 +59,10 @@
 
         function handleInputChange(e) {
           const userValue = e.target.value;
+          setErrorMessage(""); // 에러메세지 초기화
 
           if (includesHangul(userValue)) {
             setErrorMessage("한글은 입력할 수 없습니다.");
-          } else {
-            setErrorMessage(""); // 에러메세지 초기화
           }
           setValue(userValue.toUpperCase());
         }
@@ -75,7 +73,10 @@
 
           if (value === "") {
             setErrorMessage("빈 값으로 만들 수 없습니다.");
+            return;
           }
+
+          updateMainCat();
         }
 
         return (
@@ -118,32 +119,32 @@
 
         // 상태 변경하기
         // 생성버튼 클릭시, title 숫자 상태 변경하기
-        const [counter, setCounter] = React.useState(1); // 초기값 1 설정
+        const [counter, setCounter] = React.useState(
+          Number(localStorage.getItem("counter")) // 초기값을 저장된 counter 값으로 지정
+        );
         // 생성버튼 클릭시, MainCard 고양이 이미지 변경하기
         const [mainCat, setMainCat] = React.useState(CAT1);
         // MainCard 하트 버튼 클릭시,
         const [favorites, setFavorites] = React.useState([CAT1, CAT2]);
 
-        console.log("카운터", counter);
-
         // 생성 버튼(form태그) 클릭 시, 전송하도록 하는 함수
-        function handleFormSubmit(event) {
-          event.preventDefault();
-          setCounter(counter + 1);
+        function updateMainCat() {
           setMainCat(CAT2);
+          const nextCounter = counter + 1;
+          setCounter(nextCounter);
+          localStorage.setItem("counter", nextCounter);
         }
 
         // 버튼을 클릭했을 때, 콘솔에 하트 눌렀음 을 출력한다
         function handleHeartClick() {
-          console.log("하트 눌렀음");
           setFavorites([...favorites, CAT3]);
         }
 
         return (
           <div>
             <Title>{counter}번째 고양이 가라사대</Title>
-            <Form handleFormSubmit={handleFormSubmit} />
-            <MainCard img={mainCat} handleHeartClick={handleHeartClick} />
+            <Form updateMainCat={updateMainCat} />
+            <MainCard img={mainCat} onHeartClick={handleHeartClick} />
             <Favorites favorites={favorites} />
           </div>
         );

@@ -222,3 +222,38 @@ const Form = ({ handleFormSubmit }) => {
   ```
 
   - 초기화 시킬 때 else문으로 넣지 않고, 최상위에 먼저 초기화를 시켜주고 if문을 실행해도 초기화가 잘 된다.
+
+  <br>
+
+## 8. 로컬스토리지 (Local Storage) :: 브라우저 기본 API
+
+> localStorage.setItem() 은 데이터를 저장하는 것  
+> localStorage.getItem() 은 데이터를 불러오는 것
+
+<br>
+
+데이터를 로컬스토리지에 저장해서 상단 N번째 고양이 가라사대에서 상태가 변경된 숫자를 새로고침해도 그대로 유지시키기
+
+```jsx
+// 생성 버튼(form태그) 클릭 시, 전송하도록 하는 함수
+function updateMainCat() {
+  setMainCat(CAT2);
+  const nextCounter = counter + 1;
+  setCounter(nextCounter);
+  localStorage.setItem("counter", nextCounter);
+}
+```
+
+- 생성버튼 클릭하면 생성되는 함수에 `localStorage.setItem` 으로 counter 값을 저장한다
+- key : counter / value : counter + 1 (생성될 때마다 더하기 1)
+
+<br>
+
+```jsx
+const [counter, setCounter] = React.useState(
+  Number(localStorage.getItem("counter")) // 초기값을 저장된 counter 값으로 지정
+);
+```
+
+- 카운터 상태를 `localStorage.getItem` 으로 couter 값을 가져온다
+- 문자열로 합해져서 출력되므로 counter(3) + 1 되면 31 로 입력되므로 `Number()`을 사용해서 숫자로 변환해준다
