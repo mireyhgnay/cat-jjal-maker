@@ -43,26 +43,11 @@
         return <h1>{props.children}</h1>;
       };
 
-      const MainCard = ({ img, handleFormSubmit }) => {
-        // 버튼을 클릭했을 때, 콘솔에 하트 눌렀음 을 출력한다
-        function handleHeartClick() {
-          console.log("하트 눌렀음");
-        }
-
-        // 버튼을 마우스 오버 했을 때, 콘솔에 하트 스쳐 지나감 을 출력한다
-        function handleHeartMouseOver() {
-          console.log("하트 스쳐 지나감");
-        }
-
+      const MainCard = ({ img, handleHeartClick }) => {
         return (
           <div className="main-card">
             <img src={img} alt="고양이" width="400" />
-            <button
-              onClick={handleHeartClick}
-              onMouseOver={handleHeartMouseOver}
-            >
-              🤍
-            </button>
+            <button onClick={handleHeartClick}>🤍</button>
           </div>
         );
       };
@@ -81,7 +66,6 @@
       };
 
       function CatItem(props) {
-        // console.log(props);
         return (
           <li>
             <img src={props.img} style={{ width: "150px" }} />
@@ -89,15 +73,10 @@
         );
       }
 
-      function Favorites() {
-        const CAT1 = "./images/cat.png";
-        const CAT2 = "./images/cat2.jpeg";
-
-        const cats = [CAT1, CAT2];
-
+      function Favorites({ favorites }) {
         return (
           <ul className="favorites">
-            {cats.map((cat) => (
+            {favorites.map((cat) => (
               <CatItem img={cat} key={cat} />
             ))}
           </ul>
@@ -107,9 +86,15 @@
       const App = () => {
         const CAT1 = "./images/cat.png";
         const CAT2 = "./images/cat2.jpeg";
+        const CAT3 = "./images/cat3.jpg";
+
         // 상태 변경하기
+        // 생성버튼 클릭시, title 숫자 상태 변경하기
         const [counter, setCounter] = React.useState(1); // 초기값 1 설정
+        // 생성버튼 클릭시, MainCard 고양이 이미지 변경하기
         const [mainCat, setMainCat] = React.useState(CAT1);
+        // MainCard 하트 버튼 클릭시,
+        const [favorites, setFavorites] = React.useState([CAT1, CAT2]);
 
         console.log("카운터", counter);
 
@@ -120,12 +105,18 @@
           setMainCat(CAT2);
         }
 
+        // 버튼을 클릭했을 때, 콘솔에 하트 눌렀음 을 출력한다
+        function handleHeartClick() {
+          console.log("하트 눌렀음");
+          setFavorites([...favorites, CAT3]);
+        }
+
         return (
           <div>
             <Title>{counter}번째 고양이 가라사대</Title>
             <Form handleFormSubmit={handleFormSubmit} />
-            <MainCard img={mainCat} />
-            <Favorites />
+            <MainCard img={mainCat} handleHeartClick={handleHeartClick} />
+            <Favorites favorites={favorites} />
           </div>
         );
       };

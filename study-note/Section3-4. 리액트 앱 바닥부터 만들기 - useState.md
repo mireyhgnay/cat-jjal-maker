@@ -121,3 +121,26 @@ function Favorites() {
 
 - 고유 key값이 없다는 콘솔에 에러가 떠서 key값을 추가해주면 된다.
 - 리스트는 많이 사용되고, 그럴 때마다 map도 많이 사용되므로 잘 알고있어야 한다!
+
+<br>
+
+## 상태, prop, 이벤트, 리스트 기능 사용해보기
+
+```jsx
+const [favorites, setFavorites] = React.useState([CAT1, CAT2]);
+
+function handleHeartClick() {
+  console.log("하트 눌렀음");
+  // favorites 배열을 펼쳐서 쓰고, CAT3를 추가하도록 한다.
+  setFavorites([...favorites, CAT3]);
+}
+```
+
+1. favorites state를 추가하고
+2. 초기값에 [CAT1, CAT2] 을 넣어주었고
+3. MainCard 에 있는 하트를 눌렀을 때 handleHeartClick() 함수를 수행시킨다
+
+   - 원래는 handleHeartClick() 이 MainCard 컴포넌트 내부에 있었는데
+   - handleHeartClick 이벤트를 공유하기 위해서 함수를 위로 끌어올려줬다
+
+4. setFavorites를 사용해서 하트 버튼을 클릭시(handleHeartClick 이벤트 실행시) favorites 배열을 펼쳐서 쓰고, CAT3를 추가하도록 한다.
