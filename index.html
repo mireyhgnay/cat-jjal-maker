@@ -145,17 +145,19 @@
         const CAT3 = "./images/cat3.jpg";
 
         // 상태 변경하기
-        // 생성버튼 클릭시, title 숫자 상태 변경하기
-        const [counter, setCounter] = React.useState(
-          jsonLocalStorage.getItem("counter") // 초기값을 저장된 counter 값으로 지정
-        );
+        // 앱이 처음 실행될때만 로컬스토리지에 접근하도록 성능 개선 (Section5)
+        const [counter, setCounter] = React.useState(() => {
+          return jsonLocalStorage.getItem("counter"); // 초기값을 저장된 counter 값으로 지정
+        });
+
         // 생성버튼 클릭시, MainCard 고양이 이미지 변경하기
         const [mainCat, setMainCat] = React.useState(CAT1);
+
         // MainCard 하트 버튼 클릭시,
-        const [favorites, setFavorites] = React.useState(
+        const [favorites, setFavorites] = React.useState(() => {
           // 초기에는 저장된 favorites가 없기 때문에 빈 배열을 써라~
-          jsonLocalStorage.getItem("favorites") || []
-        );
+          return jsonLocalStorage.getItem("favorites") || [];
+        });
 
         // 하트를 누른 애였는지 판별하기
         const alreadyFavorites = favorites.includes(mainCat); // favorites 배열안에 mainCat이 있냐
@@ -179,9 +181,13 @@
           const newCat = await fetchCat(value);
 
           setMainCat(newCat);
-          const nextCounter = counter + 1;
-          setCounter(nextCounter);
-          jsonLocalStorage.setItem("counter", nextCounter);
+
+          // counter 숫자 연속으로 눌러도 잘 올라가도록
+          setCounter((prev) => {
+            const nextCounter = prev + 1;
+            jsonLocalStorage.setItem("counter", nextCounter);
+            return nextCounter;
+          });
         }
 
         // 버튼을 클릭했을 때, 콘솔에 하트 눌렀음 을 출력한다
