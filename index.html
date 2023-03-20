@@ -46,6 +46,17 @@
         },
       };
 
+      // CAT API
+      // text를 인자로 받아서 사진에 문구를 text를 통해서 추가해준다
+      const fetchCat = async (text) => {
+        const OPEN_API_DOMAIN = "https://cataas.com";
+        const response = await fetch(
+          `${OPEN_API_DOMAIN}/cat/says/${text}?json=true`
+        );
+        const responseJson = await response.json();
+        return `${OPEN_API_DOMAIN}/${responseJson.url}`;
+      };
+
       const Title = (props) => {
         // 해당 타이틀의 내용은 children 이라는 애로 넘어온다~ 라고 생각하면 된다
         return <h1>{props.children}</h1>;
@@ -85,7 +96,7 @@
             return;
           }
 
-          updateMainCat();
+          updateMainCat(value);
         }
 
         return (
@@ -140,8 +151,11 @@
         );
 
         // 생성 버튼(form태그) 클릭 시, 전송하도록 하는 함수
-        function updateMainCat() {
-          setMainCat(CAT2);
+        async function updateMainCat(value) {
+          // input value 값을 문구로 가져오도록 한다 (value useState 의 value를 가져온 것)
+          const newCat = await fetchCat(value);
+
+          setMainCat(newCat);
           const nextCounter = counter + 1;
           setCounter(nextCounter);
           jsonLocalStorage.setItem("counter", nextCounter);
