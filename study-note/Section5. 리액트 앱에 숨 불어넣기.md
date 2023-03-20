@@ -28,3 +28,65 @@ fetch("https://cataas.com/cat?json=true")
 ```
 
 <br>
+
+## useEffect :: 생성하기 전 맨 처음 생성되어있는 문구 설정해주기
+
+- 아래 코드처럼 첫 문구를 설정해주면, 콘솔에 무한으로 api가 찍히고 있을 것이다.
+
+  ```jsx
+  async function setInitialCat() {
+    const newCat = await fetchCat("First Cat");
+    setMainCat(newCat);
+    console.log(newCat);
+  }
+
+  setInitialCat();
+  ```
+
+<br>
+
+- useEffect 를 추가해서 함수를 그 안에서 실행시켜주면 정상적으로 잘 실행된다.
+  ```jsx
+  React.useEffect(() => {
+    setInitialCat();
+  }, []);
+  ```
+
+<br>
+
+## 왜 useEffect 를 써줘야하는가?
+
+APP 안에 그냥 `console.log('hello');` 라고 적어서 실행시키면,  
+UI가 바뀔 때마다 (다시 브라우저가 렌더링 될 때마다) hello가 출력된다.
+
+이렇듯 UI가 바뀔때마다 출력(호출)되도록 하지 말고, 원하는 시점에만 출력(호출)하고 싶은 경우가 많다.
+
+```javascript
+React.useEffect(() => {
+  console.log("hello");
+});
+```
+
+그래서 이렇게 코드를 작성해주면?  
+hello가 ui가 새로 업데이트 될 때마다 호출되는 건 똑같다.
+
+<br>
+
+```javascript
+React.useEffect(() => {
+  console.log("hello");
+}, []);
+```
+
+다시 위 코드처럼 두번째 인자에 빈배열을 추가해주면, 함수가 불릴 순간들을 제한해줄 수 있다.
+
+- `[]`는 컴포넌트가 맨 처음에 나타날때만 불린다. 라는 뜻으로 쓰인다.
+- 만약, [counter] 변수를 넣어주면, counter 가 바뀔 때마다 hello가 찍힌다
+
+<br>
+
+**✨ 총정리**
+
+리액트 컴포넌트 안에 있는 코드는 기본적으로 UI가 새로 업데이트 될 때마다 불린다.  
+특정 상태가 변경될 때만 불리도록 제한을 하고싶을 때는 두번째인자로 [] 를 넘기고,  
+거기에 원하는 상태를 넘겨주면 되는 것이다!!!
