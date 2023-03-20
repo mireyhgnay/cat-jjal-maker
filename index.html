@@ -62,11 +62,13 @@
         return <h1>{props.children}</h1>;
       };
 
-      const MainCard = ({ img, onHeartClick }) => {
+      const MainCard = ({ img, onHeartClick, alreadyFavorites }) => {
+        const heartIcon = alreadyFavorites ? "💖" : "🤍";
+
         return (
           <div className="main-card">
             <img src={img} alt="고양이" width="400" />
-            <button onClick={onHeartClick}>🤍</button>
+            <button onClick={onHeartClick}>{heartIcon}</button>
           </div>
         );
       };
@@ -123,6 +125,11 @@
       }
 
       function Favorites({ favorites }) {
+        // 좋아하는 고양이 데이터가 없으면 해당 문구를 보여줘라 (찜을 안누른 상태일 때 보여주도록)
+        if (favorites.length === 0) {
+          return <div>사진 위 하트를 눌러 고양이 사진을 저장해봐요!</div>;
+        }
+
         return (
           <ul className="favorites">
             {favorites.map((cat) => (
@@ -149,6 +156,12 @@
           // 초기에는 저장된 favorites가 없기 때문에 빈 배열을 써라~
           jsonLocalStorage.getItem("favorites") || []
         );
+
+        // 하트를 누른 애였는지 판별하기
+        const alreadyFavorites = favorites.includes(mainCat); // favorites 배열안에 mainCat이 있냐
+
+        // _번째 인 경우(null), 아예 번째 라는 것도 보여주지 말기
+        const counterTitle = counter === null ? "" : counter + "번째 ";
 
         // 생성하기 전 맨 처음 생성되어있는 문구 설정해주기
         async function setInitialCat() {
@@ -180,9 +193,13 @@
 
         return (
           <div>
-            <Title>{counter}번째 고양이 가라사대</Title>
+            <Title>{counterTitle}고양이 가라사대</Title>
             <Form updateMainCat={updateMainCat} />
-            <MainCard img={mainCat} onHeartClick={handleHeartClick} />
+            <MainCard
+              img={mainCat}
+              onHeartClick={handleHeartClick}
+              alreadyFavorites={alreadyFavorites}
+            />
             <Favorites favorites={favorites} />
           </div>
         );
