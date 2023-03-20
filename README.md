@@ -10,6 +10,8 @@
 
 📌 Github Repo : https://github.com/milooy/cat-jjal-maker
 
+🔗 Github My Page : https://mireyhgnay.github.io/cat-jjal-maker/
+
 📌 프로젝트명 : 고양이 짤방 생성기
 
 ![328234-0-resize](https://user-images.githubusercontent.com/3839771/149098995-0b89419a-58fb-494a-ade3-27aae5342553.gif)
