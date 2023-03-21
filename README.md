@@ -29,3 +29,9 @@
 [🐱 Section2-4. 리액트 앱 바닥부터 만들기 - useState](https://github.com/mireyhgnay/cat-jjal-maker/blob/main/study-note/Section3-4.%20%EB%A6%AC%EC%95%A1%ED%8A%B8%20%EC%95%B1%20%EB%B0%94%EB%8B%A5%EB%B6%80%ED%84%B0%20%EB%A7%8C%EB%93%A4%EA%B8%B0%20-%20useState.md)  
 [🐱 Section4. 지금까지 배운 개념 정리](https://github.com/mireyhgnay/cat-jjal-maker/blob/main/study-note/Section4.%20%EC%A7%80%EA%B8%88%EA%B9%8C%EC%A7%80%20%EB%B0%B0%EC%9A%B4%20%EA%B0%9C%EB%85%90%20%EC%A0%95%EB%A6%AC.md)  
 [🐱 Section5. 리액트 앱에 숨 불어넣기](https://github.com/mireyhgnay/cat-jjal-maker/blob/main/study-note/Section5.%20%EB%A6%AC%EC%95%A1%ED%8A%B8%20%EC%95%B1%EC%97%90%20%EC%88%A8%20%EB%B6%88%EC%96%B4%EB%84%A3%EA%B8%B0.md)
+
+<br>
+
+> 강의 내용과 관련된 스터디 정리해두기
+
+[✏️ Study1. 자바스크립트 비동기 처리와 콜백 함수]()
