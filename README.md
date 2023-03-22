@@ -38,4 +38,4 @@
 
 [✏️ Study1. 자바스크립트 비동기 처리와 콜백 함수](https://github.com/mireyhgnay/cat-jjal-maker/blob/main/study-note/Study1.%20%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%20%EB%B9%84%EB%8F%99%EA%B8%B0%20%EC%B2%98%EB%A6%AC%EC%99%80%20%EC%BD%9C%EB%B0%B1%20%ED%95%A8%EC%88%98.md)  
 [✏️ Study2. 자바스크립트 Promise 쉽게 이해하기](https://github.com/mireyhgnay/cat-jjal-maker/blob/main/study-note/Study2.%20%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%20Promise%20%EC%89%BD%EA%B2%8C%20%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0.md)
-[✏️ Study3. async await 문법]()
+[✏️ Study3. async await 문법](https://github.com/mireyhgnay/cat-jjal-maker/blob/main/study-note/Study3.%20async%20await%20%EB%AC%B8%EB%B2%95.md)
